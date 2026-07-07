@@ -20,7 +20,8 @@
   <script src="_ds/cohere-design-system-91d6d677-753a-4605-81f9-39862cbe9f0e/_ds_bundle.js"></script>
   <link rel="icon" href="assets/favicon.png">
   <style>
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
     body { margin: 0; background: #f6f1ea; color: #1f1d1a; font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: #212121; text-decoration: none; }
     a:hover { color: #000000; }
@@ -71,7 +72,8 @@
     .bkr-contact-info-card { display:flex; flex-direction:column; gap:0; background:rgba(255,255,255,.78); border-radius:28px; padding:clamp(20px,3vw,34px); }
     .bkr-contact-info-card > div:first-child { border-top-color:#212121; }
     .bkr-hero-band { isolation:isolate; }
-    .bkr-hero-wordmark { white-space:nowrap; }
+    .bkr-hero-wordmark { display:block; width:100%; text-align:center; white-space:nowrap; font-size:clamp(104px,22vw,338px) !important; line-height:.7 !important; letter-spacing:-.075em !important; margin:clamp(10px,1.8vw,20px) auto 0 !important; transform:translateX(-.7%) translateY(-4%); opacity:.96; }
+    .bkr-hero-media-wrap { position:relative; z-index:4; }
     .bkr-faq-item { border:1px solid rgba(31,29,26,.1); background:rgba(255,255,255,.66); border-radius:16px; margin-bottom:14px; transition:border-color .2s ease, box-shadow .2s ease, background .2s ease; }
     .bkr-faq-item:hover { background:#fff; box-shadow:0 14px 34px rgba(31,29,26,.08); border-color:rgba(2,63,53,.22); }
     .bkr-faq-item[open] { background:#fff; border-color:rgba(2,63,53,.3); box-shadow:0 16px 40px rgba(31,29,26,.09); }
@@ -87,20 +89,25 @@
     @keyframes bkr-faq-reveal { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:none; } }
     @media (max-width: 900px) {
       .bkr-hero-media-wrap { display:flex; flex-direction:column; margin-left:0 !important; margin-right:0 !important; }
+      .bkr-hero-wordmark { transform:translateX(-.8%) translateY(-3%) !important; }
       .bkr-hero-cta, .bkr-hero-stats { position:static !important; }
       .bkr-hero-cta { margin-top:14px; }
       .bkr-hero-stats { margin-top:14px; min-width:0 !important; }
-      .bkr-hero-band { padding-bottom:clamp(118px,24vw,220px) !important; }
+      .bkr-hero-band { padding-bottom:clamp(118px,24vw,210px) !important; }
     }
     .bkr-card-grid { align-items:stretch; }
     .bkr-card-grid > .bkr-card, .bkr-card-grid > .bkr-project-card { height:100%; }
     .bkr-list-line { overflow-wrap:break-word; hyphens:auto; line-height:1.45; }
     .bkr-btn, button, a { transition-duration: .22s; transition-timing-function: cubic-bezier(.16,1,.3,1); }
     .bkr-btn:hover, button:hover { transform: translateY(-1px); }
-    .bkr-logo-dark { filter:none; }
-    .bkr-hero-video { position: absolute; inset: 0; z-index: 1; }
-    .bkr-hero-poster { position: absolute; inset: 0; z-index: 0; }
-    .bkr-hero-media::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgba(10,13,11,.04) 38%, rgba(10,13,11,.16) 62%, rgba(10,13,11,.4)); }
+    .bkr-back-to-top { position:fixed; right:clamp(18px,2.4vw,34px); bottom:clamp(18px,2.4vw,34px); z-index:80; width:52px; height:52px; border-radius:50%; border:1px solid rgba(255,255,255,.22); background:rgba(20,25,23,.88); color:#f4efe7; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-size:22px; line-height:1; box-shadow:0 18px 46px rgba(24,21,18,.22); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); cursor:pointer; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(14px) scale(.94); transition:opacity .32s cubic-bezier(.16,1,.3,1), visibility .32s ease, transform .32s cubic-bezier(.16,1,.3,1), background .22s ease, color .22s ease; }
+    .bkr-back-to-top.is-visible { opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0) scale(1); }
+    .bkr-back-to-top:hover { background:#f1d8bd; color:#17171c; transform:translateY(-3px) scale(1.03); }
+    .bkr-back-to-top:focus-visible { outline:2px solid #f1d8bd; outline-offset:4px; }
+    .bkr-logo-dark { filter:none; width:clamp(184px,16vw,218px) !important; max-height:48px; object-fit:contain; }
+    .bkr-footer-logo { width:min(264px,68vw) !important; }
+    .bkr-hero-video { position: absolute; inset: 0; z-index: 1; width:100%; height:100%; object-fit:cover; display:block; }
+    .bkr-hero-media::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(180deg, rgba(10,13,11,.1) 22%, rgba(10,13,11,.2) 58%, rgba(10,13,11,.46)); }
     .bkr-hero-overlay { z-index: 3; }
     .bkr-icon { width: 22px; height: 22px; object-fit: contain; filter: invert(16%) sepia(25%) saturate(1130%) hue-rotate(121deg) brightness(89%) contrast(95%); }
     .bkr-header { top:12px !important; width:calc(100% - clamp(24px,4vw,56px)); max-width:1360px; margin:12px auto 0; border-radius:999px; background:rgba(20,25,23,.84) !important; box-shadow:0 20px 62px rgba(24,21,18,.24); border:1px solid rgba(255,255,255,.18) !important; }
@@ -143,12 +150,13 @@
       .bkr-hero-cta { width:100%; }
       .bkr-hero-cta button { flex:1 1 auto; justify-content:center; }
       .bkr-stack-mobile { grid-template-columns: 1fr !important; }
+      [style*="minmax(320px"], [style*="minmax(300px"], [style*="minmax(280px"] { grid-template-columns:1fr !important; }
     }
     @media (max-width: 520px) {
       .bkr-actions { display: none !important; }
       .bkr-header-inner { gap: 12px !important; }
-      .bkr-header-inner img { width:142px !important; }
-      .bkr-hero-wordmark { font-size: 23vw !important; }
+      .bkr-header-inner img.bkr-logo-dark { width:178px !important; }
+      .bkr-hero-wordmark { font-size: 24.5vw !important; letter-spacing:-.08em !important; transform:translateX(-1.3%) translateY(-28%) !important; }
       .bkr-hero-media { border-radius:20px !important; }
       .bkr-hero-note { max-width: none !important; }
       .bkr-detail-title { font-size: 38px !important; line-height: 1.02 !important; overflow-wrap: anywhere; }
@@ -167,7 +175,7 @@
   <header class="bkr-header" style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #e5e7eb">
     <div class="bkr-header-inner" style="max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,44px);height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px">
       <a href="#" onClick="{{ goStart }}" aria-label="Zur Startseite" style="display:flex;align-items:center;line-height:1;cursor:pointer">
-        <img class="bkr-logo-dark" src="assets/Logo_Becker_01_weiss.svg" alt="Becker Bauunternehmung" style="display:block;width:154px;height:auto">
+        <img class="bkr-logo-dark" src="assets/Logo_Becker_01_weiss.original-site.svg" alt="Becker Bauunternehmung" style="display:block;width:210px;height:auto">
       </a>
       <nav class="bkr-nav" aria-label="Hauptnavigation" style="display:flex;align-items:center;gap:4px;flex-wrap:wrap">
         <button onClick="{{ goStart }}" style="{{ navBtn.start }}">Start</button>
@@ -187,7 +195,7 @@
   <sc-if value="{{ isMobileMenuOpen }}" hint-placeholder-val="{{ false }}">
     <div class="bkr-mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:clamp(36px,9vw,68px)">
-        <img src="assets/Logo_Becker_01_weiss.svg" alt="Becker Bauunternehmung" style="display:block;width:170px;height:auto">
+        <img src="assets/Logo_Becker_01_weiss.original-site.svg" alt="Becker Bauunternehmung" style="display:block;width:190px;height:auto">
         <button onClick="{{ closeMobileMenu }}" aria-label="Menü schließen" style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font-size:24px;line-height:1;cursor:pointer">×</button>
       </div>
       <nav aria-label="Mobile Hauptnavigation" style="display:flex;flex-direction:column;margin-bottom:clamp(34px,8vw,56px)">
@@ -209,17 +217,16 @@
   <main class="bkr-page" data-screen-label="Startseite">
 
     <!-- 01 HERO -->
-    <section class="bkr-section-shell" data-screen-label="Hero" style="max-width:1360px;margin:0 auto;padding:clamp(26px,3.6vw,52px) clamp(20px,4vw,44px) clamp(34px,5vw,64px)">
+    <section class="bkr-section-shell" data-screen-label="Hero" style="max-width:1360px;margin:0 auto;padding:clamp(12px,1.8vw,26px) clamp(20px,4vw,44px) clamp(34px,5vw,64px)">
       <div class="bkr-hero-wrap" data-rv="1" style="position:relative">
-        <div class="bkr-hero-band" style="position:relative;background:linear-gradient(158deg,#1c211d 0%,#0f1311 58%,#0b0e0c 100%);border-radius:34px;padding:clamp(22px,3.2vw,44px) clamp(24px,4vw,56px) clamp(140px,19vw,268px);overflow:hidden">
+        <div class="bkr-hero-band" style="position:relative;background:linear-gradient(158deg,#1c211d 0%,#0f1311 58%,#0b0e0c 100%);border-radius:34px;padding:clamp(22px,3.2vw,44px) clamp(24px,4vw,56px) clamp(128px,16vw,218px);overflow:hidden">
           <div style="font-family:'Space Mono',monospace;font-size:clamp(10px,1.05vw,13px);letter-spacing:.26em;color:rgba(241,216,189,.82)">ARCHITEKTUR · MASSIVBAU · SCHLÜSSELFERTIG</div>
-          <div class="bkr-hero-wordmark" aria-hidden="true" style="margin-top:clamp(4px,1vw,12px);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(66px,17.5vw,266px);line-height:.8;letter-spacing:-.06em;color:#f4efe7">BECKER</div>
+          <div class="bkr-hero-wordmark" aria-hidden="true" style="font-family:'Space Grotesk',sans-serif;font-weight:600;color:#f4efe7">BECKER</div>
           <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Becker Bauunternehmung — massiv gebaut, präzise geführt</h1>
         </div>
-        <div class="bkr-hero-media-wrap" style="position:relative;margin:clamp(-120px,-16vw,-240px) clamp(0px,1.6vw,26px) 0">
+        <div class="bkr-hero-media-wrap" style="position:relative;margin:clamp(-260px,-18vw,-150px) clamp(0px,1.6vw,26px) 0">
           <div class="bkr-media bkr-hero-media" style="position:relative;display:block;width:100%;height:clamp(400px,50vw,560px);border-radius:26px;background:#141917;border:6px solid #f8f4ee;box-shadow:0 34px 80px rgba(15,19,17,.3)">
-            <img class="bkr-hero-poster" decoding="async" fetchPriority="high" src="{{ heroPoster }}" alt="Rohbau eines modernen Wohnhauses von Becker">
-            <video class="bkr-hero-video" autoPlay="true" muted="true" loop="true" playsInline="true" preload="metadata" poster="{{ heroPoster }}" aria-label="Becker Bauunternehmung Projektfilm">
+            <video class="bkr-hero-video" autoplay muted loop playsinline preload="auto" poster="{{ heroPoster }}" aria-label="Becker Bauunternehmung Projektfilm">
               <sc-if value="{{ hasHeroVideo }}" hint-placeholder-val="{{ false }}">
                 <source src="{{ heroVideo }}" type="video/mp4">
               </sc-if>
@@ -234,16 +241,16 @@
           </div>
           <div class="bkr-hero-stats" style="position:absolute;right:clamp(14px,1.8vw,24px);bottom:clamp(14px,1.8vw,24px);display:flex;flex-direction:column;background:rgba(11,14,12,.74);border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden;z-index:4;min-width:212px">
             <div style="display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.12)">
-              <span class="bkr-count" data-count="10" style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;letter-spacing:-1px;color:#f4efe7;line-height:1;min-width:58px">10</span>
-              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">Mitarbeiter im<br>qualifizierten Team</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;letter-spacing:-.4px;color:#f4efe7;line-height:1;min-width:58px">Turnkey</span>
+              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">Rohbau bis<br>Übergabe</span>
             </div>
             <div style="display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.12)">
               <span class="bkr-count" data-count="2017" data-count-from="2000" style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;letter-spacing:-1px;color:#f4efe7;line-height:1;min-width:58px">2017</span>
-              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">gegründet · seit<br>2022 als GmbH</span>
+              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">gegründet ·<br>regional bewährt</span>
             </div>
             <div style="display:flex;align-items:center;gap:14px;padding:13px 18px">
-              <span style="font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:600;letter-spacing:-.4px;color:#f1d8bd;line-height:1;min-width:58px">Meister</span>
-              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">Meister- &amp;<br>Ausbildungsbetrieb</span>
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:600;letter-spacing:-.4px;color:#f1d8bd;line-height:1;min-width:58px">Präzision</span>
+              <span style="font-size:12.5px;line-height:1.35;color:rgba(255,255,255,.72)">präzise Ausführung<br>bis ins Detail</span>
             </div>
           </div>
         </div>
@@ -260,8 +267,8 @@
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,72px);align-items:start">
         <h2 data-rv="1" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(32px,4.2vw,56px);line-height:1.06;letter-spacing:-.03em;color:#000;text-wrap:balance">Meisterhand&shy;werk aus Hohenhameln — <span style="color:#93939f">zuverlässig seit 2017.</span></h2>
         <div data-rv="1">
-          <p style="margin:0 0 18px;font-size:17px;line-height:1.65;color:#212121;text-wrap:pretty">Als Meister- und Ausbildungsbetrieb stehen wir für Zuverlässigkeit und Kundenzufriedenheit. Unser qualifiziertes Team realisiert Wohn- und Gewerbeprojekte — von der Projektplanung über das Management bis hin zum Bau und der Renovierung.</p>
-          <p style="margin:0 0 28px;font-size:17px;line-height:1.65;color:#75758a;text-wrap:pretty">Wir sind stolz auf unsere Erfahrung und unser ausgezeichnetes Preis-Leistungs-Verhältnis — mit Ergebnissen, die den individuellen Erwartungen unserer Kunden entsprechen.</p>
+          <p style="margin:0 0 18px;font-size:17px;line-height:1.65;color:#212121;text-wrap:pretty">Als Meister- und Ausbildungsbetrieb begleiten wir Bauvorhaben mit klarer Planung, persönlicher Abstimmung und sauberer Ausführung. Unser Fokus liegt auf massiven Wohn- und Gewerbeprojekten, die technisch belastbar und langfristig wertbeständig sind.</p>
+          <p style="margin:0 0 28px;font-size:17px;line-height:1.65;color:#75758a;text-wrap:pretty">Von Rohbau, Umbau und Sanierung bis zum schlüsselfertigen Bauen verbinden wir handwerkliche Präzision mit transparenten Abläufen, moderner Ausstattung und einem verlässlichen Blick für Termine, Qualität und Details.</p>
           <button onClick="{{ goUeber }}" style="background:none;border:none;padding:0;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:#212121;text-decoration:underline;text-underline-offset:4px;cursor:pointer" style-hover="color:#003c33">Mehr über uns →</button>
         </div>
       </div>
@@ -272,7 +279,7 @@
               <span style="font-size:13px;color:#75758a;line-height:1.4">{{ st.label }}</span>
               <span aria-hidden="true" style="font-size:15px;color:#212121">↗</span>
             </div>
-            <div class="bkr-count" data-count="{{ st.count }}" data-count-suffix="{{ st.suffix }}" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,5vw,72px);font-weight:500;letter-spacing:-2px;line-height:1;color:#000">{{ st.value }}</div>
+            <div class="bkr-count" data-count="{{ st.count }}" data-count-from="{{ st.from }}" data-count-suffix="{{ st.suffix }}" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,5vw,72px);font-weight:500;letter-spacing:-2px;line-height:1;color:#000">{{ st.value }}</div>
             <div style="margin-top:10px;font-size:13px;color:#93939f">{{ st.sub }}</div>
           </div>
         </sc-for>
@@ -408,7 +415,7 @@
           <button class="bkr-magnetic" onClick="{{ goUeber }}" style="display:inline-flex;align-items:center;gap:8px;background:#17171c;color:#fff;border:none;border-radius:32px;padding:12px 24px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s ease" style-hover="background:#000">Offene Stellen ansehen <span aria-hidden="true">→</span></button>
         </div>
         <figure class="bkr-media" style="margin:0;display:block;width:100%;height:clamp(240px,26vw,340px);background:#fff;border-radius:16px">
-          <img loading="lazy" decoding="async" src="assets/AdobeStock_38730356.jpg" alt="Maurerarbeiten und Ausbildung im Bauhandwerk">
+          <img loading="lazy" decoding="async" src="assets/karriere-baustelle-team-premium.png" alt="Bauteam bespricht Pläne auf einer modernen Baustelle">
         </figure>
       </div>
     </section>
@@ -543,7 +550,7 @@
       </figure>
       <div class="bkr-float-note bkr-about-note" data-rv="1" style="position:absolute;right:clamp(32px,6vw,82px);bottom:clamp(18px,4vw,46px);background:rgba(255,255,255,.9);border-radius:18px;padding:18px 22px;max-width:280px">
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.8px;color:#ff7759;margin-bottom:8px">MEISTER- &amp; AUSBILDUNGSBETRIEB</div>
-        <p style="margin:0;font-size:14px;line-height:1.55;color:#212121">Ein Team mit 10 Mitarbeitern, das Bauprojekte persönlich begleitet und Handwerk weitergibt.</p>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#212121">Persönliche Begleitung, klare Zuständigkeiten und geprüfte Ausführung vom ersten Aufmaß bis zur Übergabe.</p>
       </div>
     </section>
     <section class="bkr-section-shell-alt" style="max-width:1360px;margin:0 auto;padding:clamp(64px,8vw,110px) clamp(20px,4vw,44px)">
@@ -561,8 +568,8 @@
         </div>
         <div data-rv="1">
           <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.4px;color:#75758a;margin-bottom:24px">WOFÜR WIR STEHEN</div>
-          <p style="margin:0 0 18px;font-size:19px;line-height:1.6;color:#212121;text-wrap:pretty">Zuverlässigkeit und Kundenzufriedenheit sind bei uns keine Floskeln. Mit derzeit 10 Mitarbeitern stellen wir sicher, dass auf die Wünsche unserer Kunden wirklich eingegangen wird.</p>
-          <p style="margin:0;font-size:16px;line-height:1.65;color:#75758a;text-wrap:pretty">Als Meisterbetrieb garantieren wir geprüfte Ausführungsqualität. Als Ausbildungsbetrieb geben wir unser Handwerk an die nächste Generation weiter — weil gutes Bauen Zukunft braucht. Unser Motto sagt alles: <strong style="color:#212121;font-weight:600">„Geht nicht — gibts nicht!"</strong></p>
+          <p style="margin:0 0 18px;font-size:19px;line-height:1.6;color:#212121;text-wrap:pretty">Wir arbeiten nah am Projekt: mit persönlicher Beratung, sauberer Baustellenorganisation und einem transparenten Ablauf, der Bauherren, Architekten und Folgegewerken Sicherheit gibt.</p>
+          <p style="margin:0;font-size:16px;line-height:1.65;color:#75758a;text-wrap:pretty">Als Meisterbetrieb stehen wir für kontrollierte Ausführung, moderne Bautechnik und Lösungen, die im Alltag Bestand haben. Als Ausbildungsbetrieb geben wir unser Handwerk weiter, weil gutes Bauen Erfahrung, Präzision und Verantwortung braucht. Unser Motto sagt alles: <strong style="color:#212121;font-weight:600">„Geht nicht — gibts nicht!"</strong></p>
         </div>
       </div>
     </section>
@@ -570,8 +577,8 @@
       <div class="bkr-editorial-frame bkr-about-trust" data-rv="1" style="background:#141917;color:#fff;border-radius:30px;padding:clamp(34px,6vw,72px);display:grid;grid-template-columns:minmax(260px,.85fr) minmax(300px,1.15fr);gap:clamp(28px,5vw,72px);align-items:start">
         <div>
           <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.4px;color:#f1d8bd;margin-bottom:20px">VERTRAUEN DURCH HANDWERK</div>
-          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(30px,4.2vw,58px);line-height:1.03;letter-spacing:-.035em;color:#fff;text-wrap:balance">Ein kleiner Betrieb mit klarer Verantwortung.</h2>
-          <p style="margin:24px 0 0;font-size:16px;line-height:1.7;color:rgba(255,255,255,.7);text-wrap:pretty">Bei Becker steht nicht die schnelle Fläche im Vordergrund, sondern die Ausführung, auf die sich Bauherren, Planer und Folgegewerke verlassen können.</p>
+          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(30px,4.2vw,58px);line-height:1.03;letter-spacing:-.035em;color:#fff;text-wrap:balance">Klare Verantwortung statt anonymer Baustelle.</h2>
+          <p style="margin:24px 0 0;font-size:16px;line-height:1.7;color:rgba(255,255,255,.7);text-wrap:pretty">Bei Becker zählen klare Kommunikation, saubere Ausführung und eine Baustelle, auf die sich Bauherren, Planer und Folgegewerke verlassen können.</p>
         </div>
         <div class="bkr-trust-card-grid">
           <sc-for list="{{ trustCards }}" as="tc" hint-placeholder-count="6">
@@ -924,7 +931,7 @@
   <!-- ============ FINAL CTA + FOOTER (all pages) ============ -->
   <section data-screen-label="Call to Action" style="max-width:1360px;margin:0 auto;padding:clamp(40px,5vw,72px) clamp(20px,4vw,44px) 0">
     <div style="background:#17171c;border-radius:28px 28px 0 0;padding:clamp(48px,7vw,96px) clamp(28px,5vw,72px) clamp(40px,5vw,64px);color:#fff;text-align:center">
-      <img src="assets/Logo_Becker_01_weiss.svg" alt="Becker Bauunternehmung" style="display:block;width:min(220px,58vw);height:auto;margin:0 auto 28px">
+      <img class="bkr-footer-logo" src="assets/Logo_Becker_01_weiss.original-site.svg" alt="Becker Bauunternehmung" style="display:block;width:min(264px,68vw);height:auto;margin:0 auto 28px">
       <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:2.4px;color:#93939f;margin-bottom:28px">SIE PLANEN EIN BAUPROJEKT?</div>
       <h2 style="margin:0 auto;max-width:11em;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(36px,6vw,84px);line-height:1;letter-spacing:-.035em">Sprechen wir darüber.</h2>
       <div style="margin-top:40px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
@@ -947,6 +954,9 @@
   </section>
 </div>
 </x-dc>
+<button class="bkr-back-to-top" type="button" aria-label="Zurück nach oben" title="Zurück nach oben">
+  <span aria-hidden="true">↑</span>
+</button>
 <script type="text/x-dc" data-dc-script data-props="{&quot;bandTone&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Tiefgrün&quot;, &quot;options&quot;: [&quot;Tiefgrün&quot;, &quot;Navy&quot;, &quot;Anthrazit&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Farbwelt&quot;}}">
 class Component extends DCLogic {
   state = {
@@ -1251,10 +1261,10 @@ class Component extends DCLogic {
       relatedProjects,
 
       stats: [
-        { label: 'Gegründet', value: '2017', count: 2017, sub: 'seit 2022 als GmbH' },
-        { label: 'Team', value: '10', count: 10, sub: 'Mitarbeiter' },
-        { label: 'Qualifikation', value: 'Meister', sub: 'Meisterbetrieb im Bauhandwerk' },
-        { label: 'Nachwuchs', value: 'Azubi', sub: 'anerkannter Ausbildungsbetrieb' }
+        { label: 'Seit', value: '2017', count: 2017, from: 2010, sub: 'Seit 2017 zuverlässig im regionalen Bauhandwerk.' },
+        { label: 'Projekte', value: '50+', count: 50, from: 42, suffix: '+', sub: 'Erfolgreich realisierte Wohn- und Gewerbeprojekte.' },
+        { label: 'Qualität', value: '100 %', count: 100, from: 96, suffix: ' %', sub: 'Qualitätskontrolle in jeder Bauphase.' },
+        { label: 'Ablauf', value: '360°', count: 360, from: 320, suffix: '°', sub: 'Planung, Bau und Übergabe aus einer Hand.' }
       ],
 
       reasons: [
@@ -1309,7 +1319,7 @@ class Component extends DCLogic {
       timeline: [
         { year: '2017', text: 'Gründung der Becker Bauunternehmung in Hohenhameln — als Fachbetrieb für das Bauen rund ums Haus, vom Klein- bis zum Großprojekt.' },
         { year: '2022', text: 'Umfirmierung in eine GmbH — der nächste Schritt für ein wachsendes, stabiles Unternehmen.' },
-        { year: 'Heute', text: 'Meister- und Ausbildungsbetrieb mit 10 Mitarbeitern, der Wohn- und Gewerbeprojekte erfolgreich realisiert.' }
+        { year: 'Heute', text: 'Meister- und Ausbildungsbetrieb für Wohn- und Gewerbeprojekte mit klarer Projektführung, geprüfter Ausführung und verlässlicher Übergabe.' }
       ],
 
       // form
@@ -1341,6 +1351,65 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+<script>
+(function () {
+  function primeHeroVideo() {
+    var video = document.querySelector('.bkr-hero-video');
+    if (!video) return;
+
+    video.autoplay = true;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('preload', 'auto');
+
+    if (video.paused) {
+      var playback = video.play();
+      if (playback && typeof playback.catch === 'function') playback.catch(function () {});
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', primeHeroVideo);
+  window.addEventListener('load', primeHeroVideo);
+  requestAnimationFrame(primeHeroVideo);
+
+  var attempts = 0;
+  var timer = window.setInterval(function () {
+    primeHeroVideo();
+    attempts += 1;
+    if (attempts > 14) window.clearInterval(timer);
+  }, 350);
+
+  if ('MutationObserver' in window) {
+    new MutationObserver(primeHeroVideo).observe(document.documentElement, { childList: true, subtree: true });
+  }
+})();
+</script>
+<script>
+(function () {
+  var button = document.querySelector('.bkr-back-to-top');
+  if (!button) return;
+
+  function updateBackToTop() {
+    button.classList.toggle('is-visible', window.scrollY > 520);
+  }
+
+  button.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', updateBackToTop, { passive: true });
+  window.addEventListener('load', updateBackToTop);
+  updateBackToTop();
+})();
 </script>
 </body>
 </html>
