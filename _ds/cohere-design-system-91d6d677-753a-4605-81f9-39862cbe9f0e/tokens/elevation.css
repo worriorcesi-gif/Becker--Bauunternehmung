@@ -1,0 +1,19 @@
+/* ==========================================================================
+   Cohere — Elevation tokens
+   Cohere is mostly flat. Depth comes from surface alternation, media
+   contrast, rounded corners, and thin borders — not heavy drop shadows.
+   These are deliberately restrained.
+   ========================================================================== */
+:root {
+  --elev-flat: none;
+  /* Media lift — a soft seat under rounded photo/video cards only */
+  --elev-media: 0 1px 2px rgba(23, 23, 28, 0.04), 0 12px 32px rgba(23, 23, 28, 0.06);
+  /* Dialog — modest, for overlays */
+  --elev-dialog: 0 8px 40px rgba(23, 23, 28, 0.12);
+
+  /* Border treatments (depth-by-rule) */
+  --border-hairline: 1px solid var(--color-hairline);
+  --border-utility: 1px solid var(--color-border-light);
+  --border-card: 1px solid var(--color-card-border);
+  --border-on-dark: 1px solid rgba(255, 255, 255, 0.14); /* @kind other */
+}

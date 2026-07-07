@@ -1,0 +1,16 @@
+/* ==========================================================================
+   Cohere — Fonts
+   The proprietary faces (CohereText, Unica77 Cohere Web, CohereMono) are not
+   bundled. We load the documented Google Fonts fallbacks:
+     - Space Grotesk  -> CohereText  (tight, carved display voice)
+     - Inter          -> Unica77     (neutral neo-grotesque body/UI)
+     - Space Mono     -> CohereMono  (uppercase technical labels)
+   Swap these @import + --font-* definitions when real font files arrive.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Arial', ui-sans-serif, monospace;
+}

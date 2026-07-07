@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Cohere — Typography tokens
+   Display/body split. Massive, tight, carved headlines; restrained 16–24px
+   UI copy. Avoid heavy bold weights — size, spacing, and surface contrast
+   carry the hierarchy. Uppercase mono labels mark category/system context.
+   ========================================================================== */
+:root {
+  /* Family aliases live in fonts.css: --font-display / --font-body / --font-mono */
+
+  /* --- Weights ---------------------------------------------------------- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* --- Role type ramps (size / line-height / tracking) ------------------ */
+  /* Hero Display — home page declaration scale */
+  --type-hero-size: 96px;
+  --type-hero-line: 1.0;
+  --type-hero-track: -1.92px;
+
+  /* Product Display — product & research hero headlines */
+  --type-display-size: 72px;
+  --type-display-line: 1.0;
+  --type-display-track: -1.44px;
+
+  /* Section Display — large product-page headings */
+  --type-section-display-size: 60px;
+  --type-section-display-line: 1.0;
+  --type-section-display-track: -1.2px;
+
+  /* Section Heading — split hero & CTA headings */
+  --type-section-size: 48px;
+  --type-section-line: 1.2;
+  --type-section-track: -0.48px;
+
+  /* Card Heading — feature card & list section titles */
+  --type-card-size: 32px;
+  --type-card-line: 1.2;
+  --type-card-track: -0.32px;
+
+  /* Feature Heading — cards, filters, article titles */
+  --type-feature-size: 24px;
+  --type-feature-line: 1.3;
+  --type-feature-track: 0;
+
+  /* Body Large — lead text, larger paragraphs */
+  --type-body-lg-size: 18px;
+  --type-body-lg-line: 1.4;
+
+  /* Body — default copy & link text */
+  --type-body-size: 16px;
+  --type-body-line: 1.5;
+
+  /* Button — compact CTA labels */
+  --type-button-size: 14px;
+  --type-button-line: 1.71;
+  --type-button-weight: var(--weight-medium);
+
+  /* Caption — metadata, small explanatory text */
+  --type-caption-size: 14px;
+  --type-caption-line: 1.4;
+
+  /* Mono Label — uppercase technical markers */
+  --type-mono-size: 14px;
+  --type-mono-line: 1.4;
+  --type-mono-track: 0.28px;
+
+  /* Micro — footer, nav microcopy, small links */
+  --type-micro-size: 12px;
+  --type-micro-line: 1.4;
+}
+
+/* --- Optional utility classes (consumers may use tokens directly) ------- */
+.coh-hero {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-hero-size);
+  line-height: var(--type-hero-line);
+  letter-spacing: var(--type-hero-track);
+}
+.coh-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-line);
+  letter-spacing: var(--type-display-track);
+}
+.coh-section {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-section-size);
+  line-height: var(--type-section-line);
+  letter-spacing: var(--type-section-track);
+}
+.coh-card-heading {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-card-size);
+  line-height: var(--type-card-line);
+  letter-spacing: var(--type-card-track);
+}
+.coh-feature {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-feature-size);
+  line-height: var(--type-feature-line);
+}
+.coh-body {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+}
+.coh-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-regular);
+  font-size: var(--type-mono-size);
+  line-height: var(--type-mono-line);
+  letter-spacing: var(--type-mono-track);
+  text-transform: uppercase;
+}

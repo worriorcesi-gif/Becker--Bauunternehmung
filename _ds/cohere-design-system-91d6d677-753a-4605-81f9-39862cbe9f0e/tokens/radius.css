@@ -1,0 +1,14 @@
+/* ==========================================================================
+   Cohere — Radius tokens
+   Rounded but not cute. Dominant media radii are 8px and 22px; primary CTAs
+   are 32px pills. Never round major media below 8px.
+   ========================================================================== */
+:root {
+  --radius-xs: 4px;     /* small images, search fields, thumbnails       */
+  --radius-sm: 8px;     /* blog chips, cards, small media, dialogs       */
+  --radius-md: 16px;    /* medium product cards, grouped blocks          */
+  --radius-lg: 22px;    /* signature media-card / soft placeholder       */
+  --radius-xl: 30px;    /* research / topic filter pills                 */
+  --radius-pill: 32px;  /* primary CTA buttons                           */
+  --radius-full: 9999px;/* round status elements, fully pill controls    */
+}
